@@ -1,0 +1,49 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "International(i18n) automatic translation, Support Google and Youdao",
+  "keywords": [],
+  "homepage": "https://github.com/txpjs/translate#readme",
+  "bugs": {
+    "url": "https://github.com/txpjs/translate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/txpjs/translate.git"
+  },
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.{jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
+    "*.(json)": [
+      "npx sort-package-json"
+    ]
+  },
+  "devDependencies": {
+    "@umijs/fabric": "^3.0.0",
+    "eslint": "^8.21.0",
+    "father": "^4.0.0-rc.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.3",
+    "pinst": "^3.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "authors": [
+    "tangxiaoping <txp1035@gmail.com> (https://github.com/txp1035)"
+  ]
+}
