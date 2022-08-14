@@ -1,5 +1,5 @@
-import type { ApiOptions, Translator } from '../translate-api/types';
-import translate from '../translate-api/index';
+import type { ApiOptions, Translator } from '../base/types';
+import translate from '../base/index';
 import type { Code, I18nOptions } from './types';
 import antd from './languages/antd';
 export function getCode(code: Code, type: Translator) {
