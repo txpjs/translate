@@ -1,5 +1,5 @@
 import type { Code } from './languages/antd';
-import { ApiOptions } from '../base/types';
+import { ApiOptions } from '../../base/types';
 
 export { Code, ApiOptions };
 export interface I18nPartOptions {

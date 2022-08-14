@@ -6,7 +6,7 @@ import { logger, fsExtra } from '@txpjs/utils-node';
 import prettier from 'prettier';
 import { handelPath } from '../cli';
 import type { Code, I18nPartOptions, I18nOptions } from './translate-i18n/types';
-import type { ApiPartOptions } from './base/types';
+import type { ApiPartOptions } from '../base/types';
 import translate from './translate-i18n';
 
 interface generalObj {
