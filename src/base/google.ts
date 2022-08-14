@@ -24,19 +24,19 @@ function translate(text: any, opts: any, gotopts: any) {
   if (opts.to) {
     checkCode(opts.to, 'google');
   }
-  opts = opts || {};
-  gotopts = gotopts || {};
-  opts.from = opts.from || 'auto';
-  opts.to = opts.to || 'en';
-  opts.tld = opts.tld || 'com';
-  opts.autoCorrect = opts.autoCorrect === undefined ? false : Boolean(opts.autoCorrect);
-  let url = 'https://translate.google.' + opts.tld;
+  const newOpts = opts || {};
+  const newGotopts = gotopts || {};
+  newOpts.from = newOpts.from || 'auto';
+  newOpts.to = newOpts.to || 'en';
+  newOpts.tld = newOpts.tld || 'com';
+  newOpts.autoCorrect = newOpts.autoCorrect === undefined ? false : Boolean(newOpts.autoCorrect);
+  let url = 'https://translate.google.' + newOpts.tld;
   // 根据translate.google.com常量rpcid似乎有不同的值与不同的post体格式。
   // * MkEWBc - 返回翻译
   // * AVdN8 - 返回建议
   // * exi25c - 返回一些技术信息
   const rpcids = 'MkEWBc';
-  return got(url, gotopts)
+  return got(url, newGotopts)
     .then(function (res: any) {
       const data = {
         rpcids: rpcids,
@@ -59,16 +59,16 @@ function translate(text: any, opts: any, gotopts: any) {
         [
           [
             rpcids,
-            JSON.stringify([[text, opts.from, opts.to, opts.autoCorrect], [null]]),
+            JSON.stringify([[text, newOpts.from, newOpts.to, newOpts.autoCorrect], [null]]),
             null,
             'generic',
           ],
         ],
       ];
-      gotopts.body = 'f.req=' + encodeURIComponent(JSON.stringify(freq)) + '&';
-      gotopts.headers['content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+      newGotopts.body = 'f.req=' + encodeURIComponent(JSON.stringify(freq)) + '&';
+      newGotopts.headers['content-type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
       return got
-        .post(url, gotopts)
+        .post(url, newGotopts)
         .then(function (res: any) {
           let json = res.body.slice(6);
           let length = '';
@@ -147,9 +147,9 @@ function translate(text: any, opts: any, gotopts: any) {
 }
 
 export default async (content: string, options: Options) => {
-  let gotopts;
+  let newGotopts;
   if (options.config?.proxy) {
-    gotopts = {
+    newGotopts = {
       agent: tunnel.httpsOverHttp({
         proxy: {
           ...options.config?.proxy,
@@ -161,6 +161,6 @@ export default async (content: string, options: Options) => {
       }),
     };
   }
-  const res = await translate(content, options.language, gotopts);
+  const res = await translate(content, options.language, newGotopts);
   return res.text;
 };

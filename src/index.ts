@@ -149,14 +149,14 @@ function getObj(str: string) {
 
 // 判断是否为一个文件对象，只有目录翻译才需要传入文件类型对象
 function isFile(obj: FileNode | generalObj): boolean {
-  let isFile = true;
+  let result = true;
   Object.keys(obj).forEach((item) => {
     const arr = ['name', 'type', 'path', 'content'];
     if (arr.indexOf(item) === -1) {
-      isFile = false;
+      result = false;
     }
   });
-  return isFile;
+  return result;
 }
 
 // params可以是对象也可以是数组
@@ -256,7 +256,7 @@ function traverseDocument(dir: string, hook: Hook | undefined, level = 1): FileN
             path: itemPath,
             content: file,
           };
-        } catch (error) {
+        } catch (errors) {
           // 正常来说不可能进到这里
           return { name: item, type: undefined, path: itemPath, content: '既不是文件也不是目录' };
         }
@@ -296,7 +296,6 @@ const hookDir: Hook = {
     const {
       outDir,
       keep = true,
-      type = 'dir',
       language = { from: 'zh-CN', to: ['en-US'] },
       hook,
       ...rest
@@ -361,7 +360,6 @@ const hookFile: Hook = {
     const {
       outDir,
       keep = true,
-      type = 'dir',
       language = { from: 'zh-CN', to: ['en-US'] },
       hook,
       ...rest
@@ -428,13 +426,12 @@ export async function main(options: TranslateConfig) {
   if (hook) {
     newHook = hook;
   }
-  let documentArr;
+
   logger.info('开始阶段');
-  documentArr = traverseDocument(outDir, newHook);
+  let documentArr = traverseDocument(outDir, newHook);
   logger.info('数据处理阶段');
-  let newDocumentArr = documentArr;
   if (newHook?.handleData) {
-    newDocumentArr = await newHook.handleData(newDocumentArr, options);
+    documentArr = await newHook.handleData(documentArr, options);
   }
   logger.info('输出文件阶段');
   // 如果配置路径存在就用用户的
@@ -446,7 +443,7 @@ export async function main(options: TranslateConfig) {
       logger.warn('你配置了prettierPath但是没有生效');
     }
   }
-  traverseWriteFile(newDocumentArr, newHook, 1, prettierOption);
+  traverseWriteFile(documentArr, newHook, 1, prettierOption);
 }
 
 export default async (options: TranslateConfig) => {
