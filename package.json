@@ -18,6 +18,9 @@
   "license": "MIT",
   "main": "index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "father build",
     "lint": "npm run lint:js && npm run tsc",
