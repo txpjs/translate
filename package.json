@@ -1,0 +1,83 @@
+{
+  "name": "@txpjs/translate",
+  "version": "1.0.0-alpha.0",
+  "description": "International(i18n) automatic translation, Support Google and Youdao",
+  "keywords": [
+    "translate",
+    "Google",
+    "YouDao"
+  ],
+  "homepage": "https://github.com/txpjs/translate#readme",
+  "bugs": {
+    "url": "https://github.com/txpjs/translate/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/txpjs/translate.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "father build",
+    "lint": "npm run lint:js && npm run tsc",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "prepare": "husky install",
+    "test": "jest",
+    "tsc": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "*.{jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ],
+    "./package.json": [
+      "npx sort-package-json"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/generator": "^7.18.12",
+    "@babel/traverse": "^7.18.11",
+    "@babel/types": "^7.18.9",
+    "@txpjs/utils-node": "^1.0.0-alpha.5",
+    "cheerio": "1.0.0-rc.12",
+    "got": "9.6.0",
+    "md5": "^2.3.0",
+    "pirates": "^4.0.5",
+    "prettier": "^2.7.1",
+    "query-string": "^7.1.1",
+    "tunnel": "^0.0.6"
+  },
+  "devDependencies": {
+    "@txpjs/qa": "^1.0.0-alpha.1",
+    "@types/babel__core": "^7.1.19",
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.18.0",
+    "@types/got": "^9.6.12",
+    "@types/md5": "^2.3.2",
+    "@types/prettier": "^2.7.0",
+    "@types/tunnel": "^0.0.3",
+    "eslint": "^8.21.0",
+    "father": "^4.0.0-rc.4",
+    "husky": "^8.0.0",
+    "jest": "^28.1.3",
+    "lint-staged": "^13.0.3",
+    "pinst": "^3.0.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "authors": [
+    "tangxiaoping <txp1035@gmail.com> (https://github.com/txp1035)"
+  ]
+}
