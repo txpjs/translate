@@ -15,8 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/txpjs/translate.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "father build",
     "lint": "npm run lint:js && npm run tsc",
