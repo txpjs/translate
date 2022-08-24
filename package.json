@@ -1,9 +1,11 @@
 {
   "name": "@txpjs/translate",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "International(i18n) automatic translation, Support Google and Youdao",
   "keywords": [
     "translate",
+    "automatic translation",
+    "i18n translate",
     "Google",
     "YouDao"
   ],
@@ -16,7 +18,7 @@
     "url": "git+https://github.com/txpjs/translate.git"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
