@@ -1,6 +1,6 @@
 {
   "name": "@txpjs/translate",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "International(i18n) automatic translation, Support Google and Youdao",
   "keywords": [
     "translate",
